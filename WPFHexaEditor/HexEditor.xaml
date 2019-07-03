@@ -27,7 +27,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="./Resources/Dictionary/BrushesDictionary.xaml" />
-                <ResourceDictionary Source="./Resources/Dictionary/ToolTipDictionary.xaml" />
+                <ResourceDictionary Source="./Resources/Dictionary/MiscelanousDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -237,13 +237,6 @@
                             Content="{x:Static p:Resources.LineStatusBarTagString}"
                             FontWeight="Bold" />
                         <Label Content="{Binding Path=SelectionLine, RelativeSource={RelativeSource AncestorType={x:Type local:HexEditor}}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource LongHexConverter}}">
-                            <Label.ToolTip>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Line :" FontWeight="Bold" />
-                                    <Label Content="{Binding Path=SelectionLine, RelativeSource={RelativeSource AncestorType={x:Type local:HexEditor}}, UpdateSourceTrigger=PropertyChanged}" />
-                                    <Label Content="{Binding Path=SelectionLine, RelativeSource={RelativeSource AncestorType={x:Type local:HexEditor}}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource LongHexConverter}}" />
-                                </StackPanel>
-                            </Label.ToolTip>
                         </Label>
                     </StackPanel>
                 </StatusBarItem>
@@ -255,13 +248,6 @@
                             Content="{x:Static p:Resources.PositionString}"
                             FontWeight="Bold" />
                         <Label Content="{Binding Path=SelectionStart, RelativeSource={RelativeSource AncestorType={x:Type local:HexEditor}}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource LongHexConverter}}">
-                            <Label.ToolTip>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="{x:Static p:Resources.PositionString}" FontWeight="Bold" />
-                                    <Label Content="{Binding Path=SelectionStart, RelativeSource={RelativeSource AncestorType={x:Type local:HexEditor}}, UpdateSourceTrigger=PropertyChanged}" />
-                                    <Label Content="{Binding Path=SelectionStart, RelativeSource={RelativeSource AncestorType={x:Type local:HexEditor}}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource LongHexConverter}}" />
-                                </StackPanel>
-                            </Label.ToolTip>
                         </Label>
                     </StackPanel>
                 </StatusBarItem>

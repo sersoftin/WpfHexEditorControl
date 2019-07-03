@@ -3519,11 +3519,9 @@ namespace WpfHexaEditor
                 {
                     case ScrollMarker.TblBookmark:
                     case ScrollMarker.Bookmark:
-                        rect.ToolTip = TryFindResource("ScrollMarkerSearchToolTip");
                         rect.Fill = (SolidColorBrush)TryFindResource("BookMarkColor");
                         break;
                     case ScrollMarker.SearchHighLight:
-                        rect.ToolTip = TryFindResource("ScrollMarkerSearchToolTip");
                         rect.Fill = (SolidColorBrush)TryFindResource("SearchBookMarkColor");
                         rect.HorizontalAlignment = HorizontalAlignment.Center;
                         break;
@@ -3533,12 +3531,10 @@ namespace WpfHexaEditor
                         rect.Height = 3;
                         break;
                     case ScrollMarker.ByteModified:
-                        rect.ToolTip = TryFindResource("ScrollMarkerSearchToolTip");
                         rect.Fill = (SolidColorBrush)TryFindResource("ByteModifiedMarkColor");
                         rect.HorizontalAlignment = HorizontalAlignment.Right;
                         break;
                     case ScrollMarker.ByteDeleted:
-                        rect.ToolTip = TryFindResource("ScrollMarkerSearchToolTip");
                         rect.Fill = (SolidColorBrush)TryFindResource("ByteDeletedMarkColor");
                         rect.HorizontalAlignment = HorizontalAlignment.Right;
                         rightPosition = 4;
