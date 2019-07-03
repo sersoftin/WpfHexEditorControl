@@ -36,8 +36,7 @@
         <layers:HexDataLayer 
             x:Name="HexDataLayer"
             Grid.Row="1" 
-            Grid.Column="1"
-            local:ToolTipExtension.AutoShow="False"  >
+            Grid.Column="1">
         </layers:HexDataLayer>
         <layers:CellStepsLayer x:Name="ColumnsOffsetInfoLayer"
             Orientation="Horizontal"
@@ -49,7 +48,6 @@
             Grid.Row="1"
             Grid.Column="2"
             Margin="5,0,5,0"
-            local:ToolTipExtension.AutoShow="False"
             >
         </layers:StringDataLayer>
         

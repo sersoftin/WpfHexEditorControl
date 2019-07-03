@@ -33,7 +33,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Transactions\CanUndoChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Transactions\StandardEditTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DefaultFileHeader\ExeFile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ToolTipExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layers\StringDataLayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Layers\HexDataLayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\BookMark.cs" />

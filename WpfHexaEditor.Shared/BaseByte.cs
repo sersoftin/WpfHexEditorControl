@@ -63,27 +63,6 @@ namespace WpfHexaEditor
             //Parent hexeditor
             _parent = parent ?? throw new ArgumentNullException(nameof(parent));
             
-            #region Binding tooltip
-
-            LoadDictionary("/WPFHexaEditor;component/Resources/Dictionary/ToolTipDictionary.xaml");
-            var txtBinding = new Binding
-            {
-                Source = FindResource("ByteToolTip"),
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                Mode = BindingMode.OneWay
-            };
-
-            // Load ressources dictionnary
-            void LoadDictionary(string url)
-            {
-                var ttRes = new ResourceDictionary { Source = new Uri(url, UriKind.Relative) };
-                Resources.MergedDictionaries.Add(ttRes);
-            }
-
-            SetBinding(ToolTipProperty, txtBinding);
-
-            #endregion
-            
             //Default properties
             DataContext = this;
             Focusable = true;

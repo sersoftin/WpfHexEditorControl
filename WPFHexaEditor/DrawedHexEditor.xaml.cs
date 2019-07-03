@@ -1633,10 +1633,6 @@ namespace WpfHexaEditor
 
             HoverPosition = Position / BytePerLine * BytePerLine + arg.CellIndex;
 
-            if (ToolTipExtension.GetOperatableToolTip(dataLayer) == null)
-                return;
-
-            dataLayer.SetToolTipOpen(false);
             var thisLevel = _mouseOverLevel++;
 
             //Delay is designed to improve the experience;
@@ -1651,13 +1647,6 @@ namespace WpfHexaEditor
                     if (Mouse.DirectlyOver != dataLayer) {
                         return;
                     }
-
-                    dataLayer.SetToolTipOpen(true, new Point {
-                        X = pointValue.X + dataLayer.CellMargin.Left + dataLayer.CharSize.Width +
-                            dataLayer.CellPadding.Left,
-                        Y = pointValue.Y + dataLayer.CharSize.Height + dataLayer.CellPadding.Top +
-                            dataLayer.CellMargin.Top
-                    });
                 });
             });
         }
@@ -1676,9 +1665,6 @@ namespace WpfHexaEditor
         private static void HexDataToolTip_PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
             if (!(d is DrawedHexEditor ctrl))
                 return;
-
-            if (e.NewValue is FrameworkElement newElem)
-                ToolTipExtension.SetOperatableToolTip(ctrl.HexDataLayer, newElem);
         }
 
         public FrameworkElement StringDataToolTip {
@@ -1695,9 +1681,6 @@ namespace WpfHexaEditor
         private static void StringDataToolTip_PropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
             if (!(d is DrawedHexEditor ctrl))
                 return;
-
-            if (e.NewValue is FrameworkElement newElem)
-                ToolTipExtension.SetOperatableToolTip(ctrl.StringDataLayer, newElem);
         }
 
         public long HoverPosition {
