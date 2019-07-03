@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfHexEditor.Sample.NET47", "WPFHexaEditorExample\WpfHexEditor.Sample.NET47.csproj", "{001BD673-EF33-4FD2-AB7F-57F40FD54D53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfHexEditor.Sample.NET48", "WPFHexaEditorExample\WpfHexEditor.Sample.NET48.csproj", "{001BD673-EF33-4FD2-AB7F-57F40FD54D53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfHexEditor.Sample.Winform", "WpfHexEditor.Winform.Sample\WpfHexEditor.Sample.Winform.csproj", "{326EED14-1180-46CC-8583-E6A249A248B6}"
 EndProject
@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WpfHexaEditor", "WpfHexaEdi
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WpfHexaEditor.Shared", "WpfHexaEditor.Shared\WpfHexaEditor.Shared.shproj", "{6A739E54-2388-44F0-8D55-CDBBE55ED668}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfHexaEditor.NET47", "WPFHexaEditor\WpfHexaEditor.NET47.csproj", "{CF6AC02D-02FA-4EE9-A507-BD94F489972E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfHexaEditor.NET48", "WPFHexaEditor\WpfHexaEditor.NET48.csproj", "{CF6AC02D-02FA-4EE9-A507-BD94F489972E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfHexaEditor.NET451", "WPFHexaEditor\WpfHexaEditor.NET451.csproj", "{0E5330E9-A789-4271-96D4-E8A34D8156C5}"
 EndProject
