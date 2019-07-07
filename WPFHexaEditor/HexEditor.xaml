@@ -281,18 +281,6 @@
                 </StatusBarItem>
             </StatusBar>
         </Grid>
-
-        <Label
-            Grid.Row="2"
-            Grid.RowSpan="2"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            Width="64"
-            Margin="0,1,40,1"
-            HorizontalAlignment="Right"
-            Content="ReadOnly"
-            FontWeight="Bold"
-            Visibility="{Binding Path=ReadOnlyMode, RelativeSource={RelativeSource AncestorType={x:Type local:HexEditor}}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
         <!--#endregion-->
 
         <!--#region Scrollbar, marker, and move rectangle-->
@@ -341,38 +329,6 @@
             Opacity="0" />
         <!--#endregion-->
 
-        <!--#region Long process-->
-        <ProgressBar
-            x:Name="LongProgressProgressBar"
-            Grid.Row="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            Height="3"
-            BorderThickness="0"
-            Maximum="1"
-            Minimum="0" />
-
-        <!--  TODO: ADD TEXTBLOCK FOR DETAIL  -->
-        <Border
-            x:Name="CancelLongProcessButton"
-            Grid.Row="0"
-            Grid.RowSpan="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
-            Width="120"
-            Height="50"
-            BorderBrush="Gray"
-            BorderThickness="2"
-            CornerRadius="4">
-            <Button
-                VerticalContentAlignment="Center"
-                BorderThickness="0"
-                Click="CancelLongProcessButton_Click"
-                Content="{x:Static p:Resources.CancelLongProcessString}"
-                FontWeight="Bold"
-                Opacity="0.9"
-                ToolTip="{x:Static p:Resources.CancelLongProcessToolTipString}" />
-        </Border>
         <Label
             x:Name="TblLabel"
             Grid.Row="2"

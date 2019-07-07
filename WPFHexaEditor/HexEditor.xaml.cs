@@ -134,20 +134,6 @@ namespace WpfHexaEditor
         /// </summary>
         public event EventHandler TypeOfCharacterTableChanged;
 
-        /// <summary>
-        /// Occurs when a long process percent changed.
-        /// </summary>
-        public event EventHandler LongProcessProgressChanged;
-
-        /// <summary>
-        /// Occurs when a long process are started.
-        /// </summary>
-        public event EventHandler LongProcessProgressStarted;
-
-        /// <summary>
-        /// Occurs when a long process are completed.
-        /// </summary>
-        public event EventHandler LongProcessProgressCompleted;
 
         /// <summary>
         /// Occurs when readonly property are changed.
@@ -1914,10 +1900,6 @@ namespace WpfHexaEditor
                 _provider.DataCopiedToClipboard += Provider_DataCopied;
                 _provider.ChangesSubmited += Provider_ChangesSubmited;
                 _provider.Undone += Provider_Undone;
-                _provider.LongProcessChanged += Provider_LongProcessProgressChanged;
-                _provider.LongProcessStarted += Provider_LongProcessProgressStarted;
-                _provider.LongProcessCompleted += Provider_LongProcessProgressCompleted;
-                _provider.LongProcessCanceled += Provider_LongProcessProgressCompleted;
                 _provider.FillWithByteCompleted += Provider_FillWithByteCompleted;
                 _provider.ReplaceByteCompleted += Provider_ReplaceByteCompleted;
                 _provider.BytesAppendCompleted += Provider_BytesAppendCompleted;
@@ -1976,10 +1958,6 @@ namespace WpfHexaEditor
             _provider.DataCopiedToClipboard += Provider_DataCopied;
             _provider.ChangesSubmited += ProviderStream_ChangesSubmited;
             _provider.Undone += Provider_Undone;
-            _provider.LongProcessChanged += Provider_LongProcessProgressChanged;
-            _provider.LongProcessStarted += Provider_LongProcessProgressStarted;
-            _provider.LongProcessCompleted += Provider_LongProcessProgressCompleted;
-            _provider.LongProcessCanceled += Provider_LongProcessProgressCompleted;
             _provider.FillWithByteCompleted += Provider_FillWithByteCompleted;
             _provider.ReplaceByteCompleted += Provider_ReplaceByteCompleted;
             _provider.BytesAppendCompleted += Provider_BytesAppendCompleted;
@@ -2001,53 +1979,6 @@ namespace WpfHexaEditor
             Debug.Print("STREAM OPENED");
         }
 
-        private void Provider_LongProcessProgressCompleted(object sender, EventArgs e)
-        {
-            LongProgressProgressBar.Visibility = Visibility.Collapsed;
-            CancelLongProcessButton.Visibility = Visibility.Collapsed;
-
-            #region Enable controls
-
-            TraverseHexBytes(ctrl => ctrl.IsEnabled = true);
-            TraverseStringBytes(ctrl => ctrl.IsEnabled = true);
-            TraverseLineInfos(ctrl => ctrl.IsEnabled = true);
-            TraverseHexHeader(ctrl => ctrl.IsEnabled = true);
-            TopRectangle.IsEnabled = BottomRectangle.IsEnabled = true;
-            VerticalScrollBar.IsEnabled = true;
-
-            #endregion
-
-            LongProcessProgressCompleted?.Invoke(this, new EventArgs());
-        }
-
-        private void Provider_LongProcessProgressStarted(object sender, EventArgs e)
-        {
-            LongProgressProgressBar.Visibility = Visibility.Visible;
-            CancelLongProcessButton.Visibility = Visibility.Visible;
-
-            #region Disable controls
-
-            TraverseHexBytes(ctrl => ctrl.IsEnabled = false);
-            TraverseStringBytes(ctrl => ctrl.IsEnabled = false);
-            TraverseLineInfos(ctrl => ctrl.IsEnabled = false);
-            TraverseHexHeader(ctrl => ctrl.IsEnabled = false);
-            TopRectangle.IsEnabled = BottomRectangle.IsEnabled = false;
-            VerticalScrollBar.IsEnabled = false;
-
-            #endregion
-
-            LongProcessProgressStarted?.Invoke(this, new EventArgs());
-        }
-
-        private void Provider_LongProcessProgressChanged(object sender, EventArgs e)
-        {
-            //Update progress bar
-            LongProgressProgressBar.Value = (double)sender;
-            Application.Current.DoEvents();
-
-            LongProcessProgressChanged?.Invoke(this, new EventArgs());
-        }
-
         /// <summary>
         /// Update scrollbar when append are completed
         /// </summary>
@@ -2065,24 +1996,6 @@ namespace WpfHexaEditor
             if (!ByteProvider.CheckIsOpen(_provider)) return;
 
             _provider.IsOnLongProcess = false;
-        }
-
-        /// <summary>
-        /// Check if byteprovider is on long progress and update control
-        /// </summary>
-        private void CheckProviderIsOnProgress()
-        {
-            if (ByteProvider.CheckIsOpen(_provider))
-            {
-                if (_provider.IsOnLongProcess) return;
-                CancelLongProcessButton.Visibility = Visibility.Collapsed;
-                LongProgressProgressBar.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                CancelLongProcessButton.Visibility = Visibility.Collapsed;
-                LongProgressProgressBar.Visibility = Visibility.Collapsed;
-            }
         }
 
         #endregion Open, Close, Save, byte provider ...
@@ -2334,8 +2247,6 @@ namespace WpfHexaEditor
             UpdateStatusBar();
             UpdateVisual();
             UpdateFocus();
-
-            CheckProviderIsOnProgress();
 
             if (controlResize)
             {
