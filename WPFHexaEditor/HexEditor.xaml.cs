@@ -1,4 +1,4 @@
-﻿//////////////////////////////////////////////
+//////////////////////////////////////////////
 // Apache 2.0  - 2016-2019
 // Author : Derek Tremblay (derektremblay666@gmail.com)
 //////////////////////////////////////////////
@@ -1401,15 +1401,15 @@ namespace WpfHexaEditor
         /// <summary>
         /// Get the line number of position in parameter
         /// </summary>
-        public double GetLineNumber(long position) => (position - ByteShiftLeft) / BytePerLine;
+        public double GetLineNumber(long position) => position / BytePerLine;
 
         /// <summary>
         /// Get the column number of the position
         /// </summary>
         public int GetColumnNumber(long position) =>
             AllowVisualByteAddress
-                ? (int)(position - VisualByteAddressStart - ByteShiftLeft) % BytePerLine 
-                : (int)(position - ByteShiftLeft) % BytePerLine;
+                ? (int)(position - VisualByteAddressStart) % BytePerLine 
+                : (int)(position) % BytePerLine;
 
         /// <summary>
         /// Set position in control at position in parameter
@@ -2344,7 +2344,7 @@ namespace WpfHexaEditor
             var curLevel = ++_priLevel;
             if (ByteProvider.CheckIsOpen(_provider))
             {
-                var bufferlength = MaxVisibleLine * BytePerLine + 1 + ByteShiftLeft;
+                var bufferlength = MaxVisibleLine * BytePerLine + 1;
 
                 if (controlResize)
                 {
@@ -2666,8 +2666,8 @@ namespace WpfHexaEditor
         /// </summary>
         private long FirstVisibleBytePosition => 
             AllowVisualByteAddress
-                ? ((long)VerticalScrollBar.Value) * BytePerLine + ByteShiftLeft + VisualByteAddressStart
-                : ((long)VerticalScrollBar.Value) * BytePerLine + ByteShiftLeft;
+                ? ((long)VerticalScrollBar.Value) * BytePerLine + VisualByteAddressStart
+                : ((long)VerticalScrollBar.Value) * BytePerLine;
 
         /// <summary>
         /// Return True if SelectionStart are visible in control
@@ -3998,35 +3998,6 @@ namespace WpfHexaEditor
             _provider.LoadState(filename);
             RefreshView();
         }
-
-        #endregion
-
-        #region Shift the first visible byte in the views to the left ...
-
-        /// <summary>
-        /// Shift the first visible byte in the view to the left. 
-        /// Very useful for editing fixed-width tables. Use with BytePerLine to create visual tables ...
-        /// The value is the number of byte to shift.
-        /// </summary>
-        public int ByteShiftLeft
-        {
-            get => (int)GetValue(ByteShiftLeftProperty);
-            set => SetValue(ByteShiftLeftProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for ByteShiftLeft.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ByteShiftLeftProperty =
-            DependencyProperty.Register(nameof(ByteShiftLeft), typeof(int), typeof(HexEditor),
-                new FrameworkPropertyMetadata(0, ByteShiftLeft_Changed, ByteShiftLeft_CoerceValue));
-
-        private static void ByteShiftLeft_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is HexEditor ctrl)
-                ctrl.RefreshView(true);
-        }
-
-        private static object ByteShiftLeft_CoerceValue(DependencyObject d, object basevalue) =>
-            (int)basevalue < 0 ? 0 : basevalue;
 
         #endregion
 
