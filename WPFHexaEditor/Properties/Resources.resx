@@ -295,7 +295,7 @@ Usually, this isn't filled in.</value>
     <value>Length</value>
   </data>
   <data name="LineStatusBarTagString" xml:space="preserve">
-    <value>Ln</value>
+    <value>Line</value>
   </data>
   <data name="LineTagString" xml:space="preserve">
     <value>&lt;ln&gt;</value>

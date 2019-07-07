@@ -742,7 +742,7 @@ namespace WpfHexaEditor.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ln.
+        ///   Ищет локализованную строку, похожую на Line.
         /// </summary>
         public static string LineStatusBarTagString {
             get {
