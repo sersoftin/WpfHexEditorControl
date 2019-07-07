@@ -3188,28 +3188,12 @@ namespace WpfHexaEditor
             if (StatusBarVisibility == Visibility.Visible)
                 if (ByteProvider.CheckIsOpen(_provider))
                 {
-                    #region Show length  TODO:REFRESH ONLY WHEN NEEDED
-
-                    var mb = false;
                     long deletedBytesCount = _provider.GetByteModifieds(ByteAction.Deleted).Count;
                     long addedBytesCount = _provider.GetByteModifieds(ByteAction.Added).Count;
 
-                    //is mega bytes ?
-                    double length = (_provider.Length - deletedBytesCount + addedBytesCount) / 1024;
+                    long length = (_provider.Length - deletedBytesCount + addedBytesCount);
 
-                    if (length > 1024)
-                    {
-                        length = length / 1024;
-                        mb = true;
-                    }
-
-                    FileLengthKbLabel.Content = Math.Round(length, 2) +
-                                                (mb
-                                                    ? $" {Properties.Resources.MBTagString}"
-                                                    : $" {Properties.Resources.KBTagString}");
-                    //FileLengthKbLabel.ToolTip = $" {_provider.Length - deletedBytesCount} {Properties.Resources.ByteString}";
-
-                    #endregion
+                    FileLengthKbLabel.Content = $"{length} {Properties.Resources.FileSizeString}";
 
                     #region Byte count of selectionStart
 

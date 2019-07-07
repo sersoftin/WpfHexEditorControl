@@ -598,6 +598,15 @@ namespace WpfHexaEditor.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на bytes.
+        /// </summary>
+        public static string FileSizeString {
+            get {
+                return ResourceManager.GetString("FileSizeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Fill selection with byte.
         /// </summary>
         public static string FillSelectionAloneString {
@@ -765,15 +774,6 @@ namespace WpfHexaEditor.Properties {
         public static string LongString {
             get {
                 return ResourceManager.GetString("LongString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Mb.
-        /// </summary>
-        public static string MBTagString {
-            get {
-                return ResourceManager.GetString("MBTagString", resourceCulture);
             }
         }
         

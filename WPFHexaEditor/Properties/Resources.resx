@@ -303,8 +303,8 @@ Usually, this isn't filled in.</value>
   <data name="LongString" xml:space="preserve">
     <value>Long</value>
   </data>
-  <data name="MBTagString" xml:space="preserve">
-    <value>Mb</value>
+  <data name="FileSizeString" xml:space="preserve">
+    <value>bytes</value>
   </data>
   <data name="OkString" xml:space="preserve">
     <value>Ok</value>
