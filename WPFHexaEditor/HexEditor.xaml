@@ -15,7 +15,6 @@
     d:DesignWidth="804"
     BorderBrush="#FF443E3E"
     BorderThickness="1"
-    Drop="Control_Drop"
     Focusable="True"
     FontSize="11"
     MouseWheel="Control_MouseWheel"

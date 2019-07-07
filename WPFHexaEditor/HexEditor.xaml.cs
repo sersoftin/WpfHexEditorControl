@@ -1,4 +1,4 @@
-﻿//////////////////////////////////////////////
+//////////////////////////////////////////////
 // Apache 2.0  - 2016-2019
 // Author : Derek Tremblay (derektremblay666@gmail.com)
 //////////////////////////////////////////////
@@ -1318,17 +1318,7 @@ namespace WpfHexaEditor
 
             var pastelength = success ? byteArray.Length : clipBoardText.Length;
             var needToBeExtent = _provider.Position + pastelength > _provider.Length;
-            var expend = false;
-            if (expendIfneeded && AllowExtend && needToBeExtent)
-                if (AppendNeedConfirmation)
-                {
-                    if (MessageBox.Show(Properties.Resources.PasteExtendByteConfirmationString, ApplicationName,
-                            MessageBoxButton.YesNo,
-                            MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-                        expend = true;
-                }
-                else
-                    expend = true;
+            var expend = expendIfneeded && needToBeExtent;
 
             #endregion
 
@@ -4052,111 +4042,14 @@ namespace WpfHexaEditor
         #region Append/expend bytes to end of file
 
         /// <summary>
-        /// Allow control to append/expend byte at end of file
-        /// </summary>
-        public bool AllowExtend { get; set; }
-
-        /// <summary>
-        /// Show a message box is true before append byte at end of file
-        /// </summary>
-        public bool AppendNeedConfirmation { get; set; } = true;
-
-        /// <summary>
         /// Append one byte at end of file
         /// </summary>
         internal void AppendByte(byte[] bytesToAppend)
         {
-            if (!AllowExtend) return;
             if (!ByteProvider.CheckIsOpen(_provider)) return;
-
-            if (AppendNeedConfirmation)
-                if (MessageBox.Show(Properties.Resources.AppendByteConfirmationString, ApplicationName,
-                        MessageBoxButton.YesNo,
-                        MessageBoxImage.Question, MessageBoxResult.Yes) != MessageBoxResult.Yes) return;
 
             _provider?.AppendByte(bytesToAppend);
             RefreshView();
-        }
-
-        #endregion
-
-        #region Drag and drop support
-
-        /// <summary>
-        /// Allow the control to catch the file dropping 
-        /// Note : AllowDrop need to be true
-        /// </summary>
-        public bool AllowFileDrop { get; set; } = true;
-
-        /// <summary>
-        /// Allow the control to catch the text dropping 
-        /// Note : AllowDrop need to be true
-        /// </summary>
-        public bool AllowTextDrop { get; set; } = true;
-
-        /// <summary>
-        /// Show a messagebox for confirm open when a file are already open
-        /// </summary>
-        public bool FileDroppingConfirmation { get; set; } = true;
-
-        private void Control_Drop(object sender, DragEventArgs e)
-        {
-            #region Text Dropping (Will be supported soon)
-
-            var textDrop = e.Data.GetData(DataFormats.Text);
-            if (textDrop != null && AllowTextDrop)            
-            {
-                var textDropped = textDrop as string;
-
-                if (!string.IsNullOrEmpty(textDropped) && ByteProvider.CheckIsOpen(_provider))
-                {
-                    #region Insert at mouve over position
-                    var position = SelectionStart;
-                    bool rtn = false;
-                    TraverseHexAndStringBytes(ctrl =>
-                    {
-                        Application.Current.DoEvents();
-
-                        if (ctrl.IsMouseOverMe)
-                        {
-                            position = ctrl.BytePositionInFile;
-                            rtn = true;
-                        }
-                    }, ref rtn);
-                    #endregion
-
-                    _provider.Paste(position, textDropped, AllowExtend);
-
-                    RefreshView();
-                }
-
-                return;
-            }
-
-            #endregion
-
-            #region File dropping (Only open first selected file catched in GetData)
-
-            var fileDrop = e.Data.GetData(DataFormats.FileDrop);
-            if (fileDrop != null && AllowFileDrop)
-            {
-                var filename = fileDrop as string[];
-
-                if (!ByteProvider.CheckIsOpen(_provider))
-                    FileName = filename[0];
-                else
-                {
-                    if (FileDroppingConfirmation && MessageBox.Show(
-                            $"{Properties.Resources.FileDroppingConfirmationString} {Path.GetFileName(filename[0])} ?",
-                            ApplicationName,
-                            MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                        FileName = filename[0];
-                    else
-                        FileName = filename[0];
-                }
-            }
-
-            #endregion
         }
 
         #endregion

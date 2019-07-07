@@ -201,14 +201,10 @@ namespace WpfHexaEditor
                         break;
                     case KeyDownLabel.NextPosition:
                         if (_parent.Length == BytePositionInFile + 1)
-                            if (_parent.AllowExtend)
-                            {
-                                _parent.SetCaretMode(CaretMode.Insert);
-                                _parent.MoveCaret(TransformToAncestor(_parent).Transform(new Point(size.Width * 2, 0)));
-                            }
-                            else
-                                _parent.HideCaret();
-
+                        {
+                            _parent.SetCaretMode(CaretMode.Insert);
+                            _parent.MoveCaret(TransformToAncestor(_parent).Transform(new Point(size.Width * 2, 0)));
+                        }
                         break;
                 }
             }

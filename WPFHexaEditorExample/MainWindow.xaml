@@ -241,8 +241,6 @@
                             Height="Auto" 
                             AllowByteCount="False"
                             AllowDrop="True"
-                            AllowExtend="True"
-                            AppendNeedConfirmation="True"
                             ApplicationName="Wpf Hexeditor control sample"
                             BorderThickness="1"
                             ByteGrouping="FourByte"
