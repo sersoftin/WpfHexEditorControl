@@ -195,90 +195,30 @@ namespace WpfHexaEditor
 
         #region Build-in CTRL key support
 
-        public bool AllowBuildinCtrlc
-        {
-            get => (bool)GetValue(AllowBuildinCtrlcProperty);
-            set => SetValue(AllowBuildinCtrlcProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for AllowBuildinCTRLC.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty AllowBuildinCtrlcProperty =
-            DependencyProperty.Register(nameof(AllowBuildinCtrlc), typeof(bool), typeof(HexEditor),
-                new FrameworkPropertyMetadata(true, Control_AllowBuildinCTRLPropertyChanged));
-
-        public bool AllowBuildinCtrlv
-        {
-            get => (bool)GetValue(AllowBuildinCtrlvProperty);
-            set => SetValue(AllowBuildinCtrlvProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for AllowBuildinCTRLV.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty AllowBuildinCtrlvProperty =
-            DependencyProperty.Register(nameof(AllowBuildinCtrlv), typeof(bool), typeof(HexEditor),
-                new FrameworkPropertyMetadata(true, Control_AllowBuildinCTRLPropertyChanged));
-
-        public bool AllowBuildinCtrla
-        {
-            get => (bool)GetValue(AllowBuildinCtrlaProperty);
-            set => SetValue(AllowBuildinCtrlaProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for AllowBuildinCTRLA.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty AllowBuildinCtrlaProperty =
-            DependencyProperty.Register(nameof(AllowBuildinCtrla), typeof(bool), typeof(HexEditor),
-                new FrameworkPropertyMetadata(true, Control_AllowBuildinCTRLPropertyChanged));
-
-        public bool AllowBuildinCtrlz
-        {
-            get => (bool)GetValue(AllowBuildinCtrlzProperty);
-            set => SetValue(AllowBuildinCtrlzProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for AllowBuildinCTRLZ.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty AllowBuildinCtrlzProperty =
-            DependencyProperty.Register(nameof(AllowBuildinCtrlz), typeof(bool), typeof(HexEditor),
-                new FrameworkPropertyMetadata(true, Control_AllowBuildinCTRLPropertyChanged));
-
-        public bool AllowBuildinCtrly
-        {
-            get => (bool)GetValue(AllowBuildinCtrlyProperty);
-            set => SetValue(AllowBuildinCtrlyProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for AllowBuildinCTRLY.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty AllowBuildinCtrlyProperty =
-            DependencyProperty.Register(nameof(AllowBuildinCtrly), typeof(bool), typeof(HexEditor),
-                new FrameworkPropertyMetadata(true, Control_AllowBuildinCTRLPropertyChanged));
-
-        private static void Control_AllowBuildinCTRLPropertyChanged(DependencyObject d,
-            DependencyPropertyChangedEventArgs e)
-        {
-            if (d is HexEditor ctrl && e.NewValue != e.OldValue) ctrl.RefreshView();
-        }
 
         private void Control_CTRLZKey(object sender, EventArgs e)
         {
-            if (AllowBuildinCtrlz) Undo();
+            Undo();
         }
 
         private void Control_CTRLYKey(object sender, EventArgs e)
         {
-            if (AllowBuildinCtrly) Redo();
+            Redo();
         }
 
         private void Control_CTRLCKey(object sender, EventArgs e)
         {
-            if (AllowBuildinCtrlc) CopyToClipboard();
+            CopyToClipboard();
         }
 
         private void Control_CTRLAKey(object sender, EventArgs e)
         {
-            if (AllowBuildinCtrla) SelectAll();
+            SelectAll();
         }
 
         private void Control_CTRLVKey(object sender, EventArgs e)
         {
-            if (AllowBuildinCtrlv) Paste(AllowExtend);
+            Paste(true);
         }
 
         #endregion Build-in CTRL key support
