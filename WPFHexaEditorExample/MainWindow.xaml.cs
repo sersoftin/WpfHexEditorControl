@@ -224,10 +224,10 @@ namespace WPFHexaEditorExample
             //}
             #endregion
 
-            ////VisualByteAdress test
-            //HexEdit.AllowVisualByteAdress = !HexEdit.AllowVisualByteAdress;
-            //HexEdit.VisualByteAdressStart = 75;
-            //HexEdit.VisualByteAdressLength = 500; 
+            ////VisualByteAddress test
+            //HexEdit.AllowVisualByteAddress = !HexEdit.AllowVisualByteAddress;
+            //HexEdit.VisualByteAddressStart = 75;
+            //HexEdit.VisualByteAddressLength = 500; 
 
             //
             //HexEdit.ReplaceAll(HexEdit.SelectionByteArray, ByteConverters.StringToByte("TEST"), true, true);

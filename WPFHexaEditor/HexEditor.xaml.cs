@@ -1,4 +1,4 @@
-//////////////////////////////////////////////
+﻿//////////////////////////////////////////////
 // Apache 2.0  - 2016-2019
 // Author : Derek Tremblay (derektremblay666@gmail.com)
 //////////////////////////////////////////////
@@ -757,8 +757,8 @@ namespace WpfHexaEditor
         /// Obtain the max line for vertical scrollbar
         /// </summary>
         private long MaxLine =>
-            AllowVisualByteAdress
-                    ? ByteProvider.CheckIsOpen(_provider) ? VisualByteAdressLength / BytePerLine : 0
+            AllowVisualByteAddress
+                    ? ByteProvider.CheckIsOpen(_provider) ? VisualByteAddressLength / BytePerLine : 0
                     : ByteProvider.CheckIsOpen(_provider) ? _provider.Length / BytePerLine : 0;
 
         /// <summary>
@@ -838,8 +838,8 @@ namespace WpfHexaEditor
                 }
             }
 
-            if (AllowVisualByteAdress && SelectionStart > VisualByteAdressStart)
-                SelectionStart = VisualByteAdressStart;
+            if (AllowVisualByteAddress && SelectionStart > VisualByteAddressStart)
+                SelectionStart = VisualByteAddressStart;
 
             if (SelectionStart < FirstVisibleBytePosition)
                 VerticalScrollBar.Value--;
@@ -875,8 +875,8 @@ namespace WpfHexaEditor
                 }
             }
 
-            if (AllowVisualByteAdress && SelectionStart > VisualByteAdressStop)
-                SelectionStart = VisualByteAdressStop;
+            if (AllowVisualByteAddress && SelectionStart > VisualByteAddressStop)
+                SelectionStart = VisualByteAddressStop;
 
             if (SelectionStart > LastVisibleBytePosition)
                 VerticalScrollBar.Value++;
@@ -910,8 +910,8 @@ namespace WpfHexaEditor
                 }
             }
 
-            if (AllowVisualByteAdress && SelectionStart > VisualByteAdressStop)
-                SelectionStart = VisualByteAdressStop;
+            if (AllowVisualByteAddress && SelectionStart > VisualByteAddressStop)
+                SelectionStart = VisualByteAddressStop;
 
             if (SelectionStart > LastVisibleBytePosition)
                 VerticalScrollBar.Value++;
@@ -941,8 +941,8 @@ namespace WpfHexaEditor
                 }
             }
 
-            if (AllowVisualByteAdress && SelectionStart < VisualByteAdressStart)
-                SelectionStart = VisualByteAdressStart;
+            if (AllowVisualByteAddress && SelectionStart < VisualByteAddressStart)
+                SelectionStart = VisualByteAddressStart;
 
             if (SelectionStart < FirstVisibleBytePosition)
                 VerticalScrollBar.Value--;
@@ -1175,8 +1175,8 @@ namespace WpfHexaEditor
             if (SelectionStart >= _provider.Length)
                 SelectionStart = _provider.Length - 1;
 
-            if (AllowVisualByteAdress && SelectionStart > VisualByteAdressStop)
-                SelectionStart = VisualByteAdressStop;
+            if (AllowVisualByteAddress && SelectionStart > VisualByteAddressStop)
+                SelectionStart = VisualByteAddressStop;
 
             if (SelectionStart > LastVisibleBytePosition)
                 VerticalScrollBar.Value++;
@@ -1209,8 +1209,8 @@ namespace WpfHexaEditor
             if (SelectionStart < 0)
                 SelectionStart = 0;
 
-            if (AllowVisualByteAdress && SelectionStart < VisualByteAdressStart)
-                SelectionStart = VisualByteAdressStart;
+            if (AllowVisualByteAddress && SelectionStart < VisualByteAddressStart)
+                SelectionStart = VisualByteAddressStart;
 
             if (SelectionStart < FirstVisibleBytePosition)
                 VerticalScrollBar.Value--;
@@ -1407,8 +1407,8 @@ namespace WpfHexaEditor
         /// Get the column number of the position
         /// </summary>
         public int GetColumnNumber(long position) =>
-            AllowVisualByteAdress
-                ? (int)(position - VisualByteAdressStart - ByteShiftLeft) % BytePerLine 
+            AllowVisualByteAddress
+                ? (int)(position - VisualByteAddressStart - ByteShiftLeft) % BytePerLine 
                 : (int)(position - ByteShiftLeft) % BytePerLine;
 
         /// <summary>
@@ -2371,8 +2371,8 @@ namespace WpfHexaEditor
 
                 var startPosition = FirstVisibleBytePosition;
 
-                if (AllowVisualByteAdress && startPosition < VisualByteAdressStart)
-                    startPosition = VisualByteAdressStart;
+                if (AllowVisualByteAddress && startPosition < VisualByteAddressStart)
+                    startPosition = VisualByteAddressStart;
 
                 _provider.Position = startPosition;
                 var readSize = _provider.Read(_viewBuffer, 0, bufferlength);
@@ -2394,7 +2394,7 @@ namespace WpfHexaEditor
                         byteControl.Byte = _viewBuffer[index];
                         byteControl.BytePositionInFile = nextPos;
 
-                        if (AllowVisualByteAdress && nextPos > VisualByteAdressStop)
+                        if (AllowVisualByteAddress && nextPos > VisualByteAddressStop)
                             byteControl.Clear();
                     }
                     else
@@ -2427,7 +2427,7 @@ namespace WpfHexaEditor
                         sbCtrl.BytePositionInFile = nextPos;
                         sbCtrl.ByteNext = index < readSize - 1 ? (byte?)_viewBuffer[index + 1] : null;
 
-                        if (AllowVisualByteAdress && nextPos > VisualByteAdressStop)
+                        if (AllowVisualByteAddress && nextPos > VisualByteAddressStop)
                             sbCtrl.Clear();
                     }
                     else
@@ -2651,7 +2651,7 @@ namespace WpfHexaEditor
                         }
                     }
 
-                    if (AllowVisualByteAdress && firstByteInLine > VisualByteAdressStop)
+                    if (AllowVisualByteAddress && firstByteInLine > VisualByteAddressStop)
                         lineOffsetLabel.Text = string.Empty;
 
                     #endregion
@@ -2665,8 +2665,8 @@ namespace WpfHexaEditor
         /// Get first visible byte position in control
         /// </summary>
         private long FirstVisibleBytePosition => 
-            AllowVisualByteAdress
-                ? ((long)VerticalScrollBar.Value) * BytePerLine + ByteShiftLeft + VisualByteAdressStart
+            AllowVisualByteAddress
+                ? ((long)VerticalScrollBar.Value) * BytePerLine + ByteShiftLeft + VisualByteAddressStart
                 : ((long)VerticalScrollBar.Value) * BytePerLine + ByteShiftLeft;
 
         /// <summary>
@@ -4064,18 +4064,18 @@ namespace WpfHexaEditor
         #endregion
                 
         #region Configure the start/stop bytes that are loaded visually into the hexadecimal editor
-        public bool AllowVisualByteAdress
+        public bool AllowVisualByteAddress
         {
-            get { return (bool)GetValue(AllowVisualByteAdressProperty); }
-            set { SetValue(AllowVisualByteAdressProperty, value); }
+            get { return (bool)GetValue(AllowVisualByteAddressProperty); }
+            set { SetValue(AllowVisualByteAddressProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for AllowVisualByteAdress.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty AllowVisualByteAdressProperty =
-            DependencyProperty.Register(nameof(AllowVisualByteAdress), typeof(bool), typeof(HexEditor),
-                new FrameworkPropertyMetadata(false, AllowVisualByteAdress_Changed));
+        // Using a DependencyProperty as the backing store for AllowVisualByteAddress.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AllowVisualByteAddressProperty =
+            DependencyProperty.Register(nameof(AllowVisualByteAddress), typeof(bool), typeof(HexEditor),
+                new FrameworkPropertyMetadata(false, AllowVisualByteAddress_Changed));
 
-        private static void AllowVisualByteAdress_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void AllowVisualByteAddress_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is HexEditor ctrl && e.NewValue != e.OldValue)
             {
@@ -4089,23 +4089,23 @@ namespace WpfHexaEditor
         /// Note that all other bytes address after will not be shown in control.
         /// This property are read only
         /// </summary>
-        public long VisualByteAdressStop => VisualByteAdressStart + VisualByteAdressLength;
+        public long VisualByteAddressStop => VisualByteAddressStart + VisualByteAddressLength;
 
         /// <summary>
-        /// Set the length from first byte set by VisualStartByteAdress property are virtually loaded in the control. 
+        /// Set the length from first byte set by VisualStartByteAddress property are virtually loaded in the control. 
         /// </summary>
-        public long VisualByteAdressLength
+        public long VisualByteAddressLength
         {
-            get { return (long)GetValue(VisualByteAdressLengthProperty); }
-            set { SetValue(VisualByteAdressLengthProperty, value); }
+            get { return (long)GetValue(VisualByteAddressLengthProperty); }
+            set { SetValue(VisualByteAddressLengthProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for VisualByteAdressLength.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty VisualByteAdressLengthProperty =
-            DependencyProperty.Register(nameof(VisualByteAdressLength), typeof(long), typeof(HexEditor),
-                new FrameworkPropertyMetadata(1L, VisualByteAdressLength_Changed, VisualByteAdressLength_CoerceValue));
+        // Using a DependencyProperty as the backing store for VisualByteAddressLength.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty VisualByteAddressLengthProperty =
+            DependencyProperty.Register(nameof(VisualByteAddressLength), typeof(long), typeof(HexEditor),
+                new FrameworkPropertyMetadata(1L, VisualByteAddressLength_Changed, VisualByteAddressLength_CoerceValue));
 
-        private static object VisualByteAdressLength_CoerceValue(DependencyObject d, object baseValue)
+        private static object VisualByteAddressLength_CoerceValue(DependencyObject d, object baseValue)
         {
             if (!(d is HexEditor ctrl)) return baseValue;
 
@@ -4116,7 +4116,7 @@ namespace WpfHexaEditor
             return value >= ctrl._provider.Length ? ctrl._provider.Length : baseValue;
         }
 
-        private static void VisualByteAdressLength_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void VisualByteAddressLength_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is HexEditor ctrl && e.NewValue != e.OldValue)
             {
@@ -4129,18 +4129,18 @@ namespace WpfHexaEditor
         /// Set the first byte are virtually loaded in the control. 
         /// Note that all other bytes address before will not be shown in control.
         /// </summary>
-        public long VisualByteAdressStart
+        public long VisualByteAddressStart
         {
-            get => (long)GetValue(VisualByteAdressStartProperty);
-            set => SetValue(VisualByteAdressStartProperty, value);
+            get => (long)GetValue(VisualByteAddressStartProperty);
+            set => SetValue(VisualByteAddressStartProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for VisualStartByteAdress.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty VisualByteAdressStartProperty =
-            DependencyProperty.Register(nameof(VisualByteAdressStart), typeof(long), typeof(HexEditor),
-                new FrameworkPropertyMetadata(0L, VisualByteAdressStart_Changed, VisualByteAdressStart_CoerceValue));
+        // Using a DependencyProperty as the backing store for VisualStartByteAddress.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty VisualByteAddressStartProperty =
+            DependencyProperty.Register(nameof(VisualByteAddressStart), typeof(long), typeof(HexEditor),
+                new FrameworkPropertyMetadata(0L, VisualByteAddressStart_Changed, VisualByteAddressStart_CoerceValue));
 
-        private static object VisualByteAdressStart_CoerceValue(DependencyObject d, object baseValue)
+        private static object VisualByteAddressStart_CoerceValue(DependencyObject d, object baseValue)
         {
             if (!(d is HexEditor ctrl)) return baseValue;
 
@@ -4153,7 +4153,7 @@ namespace WpfHexaEditor
             //return (long)baseValue;
         }
 
-        private static void VisualByteAdressStart_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void VisualByteAddressStart_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is HexEditor ctrl && e.NewValue != e.OldValue)
             {
