@@ -915,7 +915,7 @@ namespace WpfHexaEditor.Core.Bytes
                         $"char sDataHex[] =\"{ByteConverters.StringToHex(ByteConverters.BytesToString(buffer))}\";");
                     sb.AppendLine();
                     sb.AppendLine();
-                    sb.Append($"unsigned char rawData[{length}] ");
+                    sb.Append($"unsigned char rawData[{length}] {{");
                     sb.AppendLine();
                     sb.Append("\t");
                     break;
