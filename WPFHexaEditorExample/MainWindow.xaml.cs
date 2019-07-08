@@ -54,7 +54,6 @@ namespace WPFHexaEditorExample
         private void SaveMenu_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.Cursor = Cursors.Wait;
-            //HexEdit.SaveTBLFile();
             HexEdit.SubmitChanges();
             Application.Current.MainWindow.Cursor = null;
         }
@@ -161,45 +160,6 @@ namespace WPFHexaEditorExample
         {
         }
 
-        private void CTableASCIIButton_Click(object sender, RoutedEventArgs e)
-        {
-            HexEdit.TypeOfCharacterTable = CharacterTableType.Ascii;
-            CTableAsciiButton.IsChecked = true;
-            CTableTblButton.IsChecked = false;
-            CTableTblDefaultAsciiButton.IsChecked = false;
-        }
-
-        private void CTableTBLButton_Click(object sender, RoutedEventArgs e)
-        {
-            var fileDialog = new OpenFileDialog();
-
-            if (fileDialog.ShowDialog() != null)
-            {
-                if (File.Exists(fileDialog.FileName))
-                {
-                    Application.Current.MainWindow.Cursor = Cursors.Wait;
-
-                    HexEdit.LoadTblFile(fileDialog.FileName);
-                    HexEdit.TypeOfCharacterTable = CharacterTableType.TblFile;
-                    CTableAsciiButton.IsChecked = false;
-                    CTableTblButton.IsChecked = true;
-                    CTableTblDefaultAsciiButton.IsChecked = false;
-
-                    Application.Current.MainWindow.Cursor = null;
-                }
-            }
-        }
-
-        private void CTableTBLDefaultASCIIButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.MainWindow.Cursor = Cursors.Wait;
-
-            HexEdit.TypeOfCharacterTable = CharacterTableType.TblFile;
-            HexEdit.LoadDefaultTbl();
-
-            Application.Current.MainWindow.Cursor = null;
-        }
-
         private void SaveAsMenu_Click(object sender, RoutedEventArgs e)
         {
             var fileDialog = new SaveFileDialog();
@@ -231,26 +191,6 @@ namespace WPFHexaEditorExample
 
             //
             //HexEdit.ReplaceAll(HexEdit.SelectionByteArray, ByteConverters.StringToByte("TEST"), true, true);
-        }
-
-        private void CTableTblDefaultEBCDICButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.MainWindow.Cursor = Cursors.Wait;
-
-            HexEdit.TypeOfCharacterTable = CharacterTableType.TblFile;
-            HexEdit.LoadDefaultTbl(DefaultCharacterTableType.EbcdicWithSpecialChar);
-
-            Application.Current.MainWindow.Cursor = null;
-        }
-
-        private void CTableTblDefaultEBCDICNoSPButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.MainWindow.Cursor = Cursors.Wait;
-
-            HexEdit.TypeOfCharacterTable = CharacterTableType.TblFile;
-            HexEdit.LoadDefaultTbl(DefaultCharacterTableType.EbcdicNoSpecialChar);
-
-            Application.Current.MainWindow.Cursor = null;
         }
 
         private void FindMenu_Click(object sender, RoutedEventArgs e)

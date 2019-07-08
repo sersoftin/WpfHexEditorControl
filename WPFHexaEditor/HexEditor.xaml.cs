@@ -55,11 +55,6 @@ namespace WpfHexaEditor
         private long _rightClickBytePosition = -1;
 
         /// <summary>
-        /// Custom character table loaded. Used for show byte as texte.
-        /// </summary>
-        private TblStream _tblCharacterTable;
-
-        /// <summary>
         /// Hold the count of all byte in file.
         /// </summary>
         private long[] _bytecount;
@@ -514,157 +509,6 @@ namespace WpfHexaEditor
             ctrl.RefreshView(true);
             ctrl.TypeOfCharacterTableChanged?.Invoke(ctrl, new EventArgs());
         }
-
-        /// <summary>
-        /// Show or not Multi Title Enconding (MTE) are loaded in TBL file
-        /// </summary>
-        public bool TblShowMte
-        {
-            get => (bool)GetValue(TblShowMteProperty);
-            set => SetValue(TblShowMteProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for TBLShowMTE.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TblShowMteProperty =
-            DependencyProperty.Register(nameof(TblShowMte), typeof(bool), typeof(HexEditor),
-                new FrameworkPropertyMetadata(true,
-                    TBLShowMTE_PropetyChanged));
-
-        private static void TBLShowMTE_PropetyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is HexEditor ctrl)
-                ctrl.RefreshView();
-        }
-
-        /// <summary>
-        /// Load TBL Character table file in control. (Used for ROM reverse engineering)
-        /// Load TBL Bookmark into control.
-        /// Change CharacterTable property for use.
-        /// </summary>
-        public void LoadTblFile(string fileName)
-        {
-            if (!File.Exists(fileName)) return;
-
-            _tblCharacterTable = new TblStream(fileName);
-
-            TblLabel.Visibility = Visibility.Visible;
-            TblLabel.ToolTip = $"TBL file : {fileName}";
-
-            UpdateTblBookMark();
-
-            BuildDataLines(MaxVisibleLine, true);
-            RefreshView(true);
-        }
-
-        /// <summary>
-        /// Load TBL Character table file in control. (Used for ROM reverse engineering)
-        /// Load TBL Bookmark into control.
-        /// Change CharacterTable property for use.
-        /// </summary>
-        public void LoadDefaultTbl(DefaultCharacterTableType type = DefaultCharacterTableType.Ascii)
-        {
-            _tblCharacterTable = TblStream.CreateDefaultTbl(type);
-            TblShowMte = false;
-
-            TblLabel.Visibility = Visibility.Visible;
-            TblLabel.ToolTip = $"{Properties.Resources.DefaultTBLString} : {type}";
-
-            RefreshView();
-        }
-
-        /// <summary>
-        /// Update TBL bookmark in control
-        /// </summary>
-        private void UpdateTblBookMark()
-        {
-            //Load from loaded TBL bookmark
-            if (_tblCharacterTable == null) return;
-
-            foreach (var mark in _tblCharacterTable.BookMarks)
-                SetScrollMarker(mark);
-        }
-
-        /// <summary>
-        /// Get or set the color of DTE in string panel.
-        /// </summary>
-        public SolidColorBrush TbldteColor
-        {
-            get => (SolidColorBrush)GetValue(TbldteColorProperty);
-            set => SetValue(TbldteColorProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for TBLDTEColor.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TbldteColorProperty =
-            DependencyProperty.Register(nameof(TbldteColor), typeof(SolidColorBrush), typeof(HexEditor),
-                new FrameworkPropertyMetadata(Brushes.Red,
-                    TBLColor_Changed));
-
-        private static void TBLColor_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is HexEditor ctrl)
-                ctrl.RefreshView();
-        }
-
-        /// <summary>
-        /// Get or set the color of MTE in string panel.
-        /// </summary>
-        public SolidColorBrush TblmteColor
-        {
-            get => (SolidColorBrush)GetValue(TblmteColorProperty);
-            set => SetValue(TblmteColorProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for TBLDTEColor.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TblmteColorProperty =
-            DependencyProperty.Register(nameof(TblmteColor), typeof(SolidColorBrush), typeof(HexEditor),
-                new FrameworkPropertyMetadata(Brushes.DarkSlateGray,
-                    TBLColor_Changed));
-
-        /// <summary>
-        /// Get or set the color of EndBlock in string panel.
-        /// </summary>
-        public SolidColorBrush TblEndBlockColor
-        {
-            get => (SolidColorBrush)GetValue(TblEndBlockColorProperty);
-            set => SetValue(TblEndBlockColorProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for TBLDTEColor.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TblEndBlockColorProperty =
-            DependencyProperty.Register(nameof(TblEndBlockColor), typeof(SolidColorBrush), typeof(HexEditor),
-                new FrameworkPropertyMetadata(Brushes.Blue,
-                    TBLColor_Changed));
-
-        /// <summary>
-        /// Get or set the color of EndBlock in string panel.
-        /// </summary>
-        public SolidColorBrush TblEndLineColor
-        {
-            get => (SolidColorBrush)GetValue(TblEndLineColorProperty);
-            set => SetValue(TblEndLineColorProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for TBLDTEColor.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TblEndLineColorProperty =
-            DependencyProperty.Register(nameof(TblEndLineColor), typeof(SolidColorBrush), typeof(HexEditor),
-                new FrameworkPropertyMetadata(Brushes.Blue,
-                    TBLColor_Changed));
-
-        /// <summary>
-        /// Get or set the color of EndBlock in string panel.
-        /// </summary>
-        public SolidColorBrush TblDefaultColor
-        {
-            get => (SolidColorBrush)GetValue(TblDefaultColorProperty);
-            set => SetValue(TblDefaultColorProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for TBLDTEColor.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TblDefaultColorProperty =
-            DependencyProperty.Register(nameof(TblDefaultColor), typeof(SolidColorBrush), typeof(HexEditor),
-                new FrameworkPropertyMetadata(Brushes.Black,
-                    TBLColor_Changed));
-
         #endregion Characters tables property/methods
 
         #region ReadOnly property/event
@@ -1327,18 +1171,18 @@ namespace WpfHexaEditor
         /// Copy to clipboard the current selection with actual change in control
         /// </summary>
         public void CopyToClipboard(CopyPasteMode copypastemode) => CopyToClipboard(copypastemode, SelectionStart,
-            SelectionStop, true, _tblCharacterTable);
+            SelectionStop, true);
 
         /// <summary>
         /// Copy to clipboard
         /// </summary>
         public void CopyToClipboard(CopyPasteMode copypastemode, long selectionStart, long selectionStop,
-            bool copyChange, TblStream tbl)
+            bool copyChange)
         {
             if (!CanCopy()) return;
             if (!ByteProvider.CheckIsOpen(_provider)) return;
 
-            _provider.CopyToClipboard(copypastemode, selectionStart, selectionStop, copyChange, tbl);
+            _provider.CopyToClipboard(copypastemode, selectionStart, selectionStop, copyChange);
         }
 
         /// <summary>
@@ -1854,7 +1698,6 @@ namespace WpfHexaEditor
 
                 UnSelectAll();
 
-                UpdateTblBookMark();
                 UpdateSelectionColor(FirstColor.HexByteData);
 
                 //Update count of byte on file open
@@ -1899,7 +1742,6 @@ namespace WpfHexaEditor
 
             UnSelectAll();
 
-            UpdateTblBookMark();
             UpdateSelectionColor(FirstColor.HexByteData);
 
             //Update count of byte
@@ -2239,7 +2081,7 @@ namespace WpfHexaEditor
 
                 for (var i = 0; i < BytePerLine; i++)
                 {
-                    if (_tblCharacterTable == null && (ByteSpacerPositioning == ByteSpacerPosition.Both ||
+                    if ((ByteSpacerPositioning == ByteSpacerPosition.Both ||
                                                        ByteSpacerPositioning == ByteSpacerPosition.StringBytePanel))
                         AddByteSpacer(dataLineStack, i);
 
@@ -2416,7 +2258,6 @@ namespace WpfHexaEditor
                     sbCtrl.ReadOnlyMode = ReadOnlyMode;
 
                     sbCtrl.InternalChange = true;
-                    sbCtrl.TblCharacterTable = _tblCharacterTable;
                     sbCtrl.TypeOfCharacterTable = TypeOfCharacterTable;
 
                     var nextPos = startPosition + index;
@@ -3342,7 +3183,6 @@ namespace WpfHexaEditor
 
                 switch (marker)
                 {
-                    case ScrollMarker.TblBookmark:
                     case ScrollMarker.Bookmark:
                         rect.Fill = (SolidColorBrush)TryFindResource("BookMarkColor");
                         break;
@@ -3485,7 +3325,6 @@ namespace WpfHexaEditor
                 UndoCMenu.IsEnabled = false;
                 DeleteCMenu.IsEnabled = false;
                 FillByteCMenu.IsEnabled = false;
-                CopyTblcMenu.IsEnabled = false;
 
                 #endregion
 
@@ -3497,9 +3336,6 @@ namespace WpfHexaEditor
                     CopyHexaCMenu.IsEnabled = true;
                     DeleteCMenu.IsEnabled = true;
                     FillByteCMenu.IsEnabled = true;
-
-                    if (_tblCharacterTable != null)
-                        CopyTblcMenu.IsEnabled = true;
                 }
 
                 if (UndoCount > 0)
@@ -3541,9 +3377,6 @@ namespace WpfHexaEditor
                     break;
                 case nameof(CopyPascalCMenu):
                     CopyToClipboard(CopyPasteMode.PascalCode);
-                    break;
-                case nameof(CopyTblcMenu):
-                    CopyToClipboard(CopyPasteMode.TblString);
                     break;
             }
         }
@@ -3810,7 +3643,6 @@ namespace WpfHexaEditor
             if (disposing)
             {
                 _provider?.Dispose();
-                _tblCharacterTable?.Dispose();
                 _viewBuffer = null;
                 _markedPositionList = null;
             }

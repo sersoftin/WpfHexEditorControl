@@ -785,9 +785,8 @@ namespace WpfHexaEditor.Core.Bytes
         /// <param name="copyChange">Set to true if you want onclude change in your copy. Set to false to copy directly from source</param>
         /// <param name="copypastemode"></param>
         /// <param name="selectionStart"></param>
-        /// <param name="tbl"></param>
         public void CopyToClipboard(CopyPasteMode copypastemode, long selectionStart, long selectionStop,
-            bool copyChange = true, TblStream tbl = null)
+            bool copyChange = true)
         {
             if (!CanCopy(selectionStart, selectionStop)) return;
 
@@ -801,10 +800,6 @@ namespace WpfHexaEditor.Core.Bytes
             {
                 case CopyPasteMode.Byte:
                     throw new NotImplementedException();
-                case CopyPasteMode.TblString when tbl != null:
-                    sBuffer = tbl.ToTblString(buffer);
-                    da.SetText(sBuffer, TextDataFormat.Text);
-                    break;
                 case CopyPasteMode.AsciiString:
                     sBuffer = ByteConverters.BytesToString(buffer);
                     da.SetText(sBuffer, TextDataFormat.Text);

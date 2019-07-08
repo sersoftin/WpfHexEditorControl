@@ -61,11 +61,6 @@ namespace WpfHexaEditor
         /// </summary>
         public CharacterTableType TypeOfCharacterTable { get; set; }
 
-        /// <summary>
-        /// Custom character table
-        /// </summary>
-        public TblStream TblCharacterTable { get; set; }
-
         #endregion Characters tables
 
         #region Methods
@@ -81,25 +76,6 @@ namespace WpfHexaEditor
                 {
                     case CharacterTableType.Ascii:
                         Text = ByteConverters.ByteToChar(Byte.Value).ToString();
-                        break;
-                    case CharacterTableType.TblFile:
-                        if (TblCharacterTable != null)
-                        {
-                            ReadOnlyMode = !TblCharacterTable.AllowEdit;
-
-                            var content = "#";
-
-                            if (TblShowMte && ByteNext.HasValue)
-                                content = TblCharacterTable.FindMatch(ByteConverters.ByteToHex(Byte.Value) +
-                                                                      ByteConverters.ByteToHex(ByteNext.Value), true);
-
-                            if (content == "#")
-                                content = TblCharacterTable.FindMatch(ByteConverters.ByteToHex(Byte.Value), true);
-
-                            Text = content;
-                        }
-                        else
-                            goto case CharacterTableType.Ascii;
                         break;
                 }
             }
@@ -142,39 +118,6 @@ namespace WpfHexaEditor
                         break;
                 }
             }
-            else
-            {
-                #region TBL COLORING
-                var cbb = _parent.GetCustomBackgroundBlock(BytePositionInFile);
-
-                Description = cbb != null ? cbb.Description : "";
-
-                Background = cbb != null ? cbb.Color : Brushes.Transparent;
-                FontWeight = _parent.FontWeight;
-                Foreground = _parent.Foreground;
-
-                if (TypeOfCharacterTable == CharacterTableType.TblFile)
-                    switch (Dte.TypeDte(Text))
-                    {
-                        case DteType.DualTitleEncoding:
-                            Foreground = _parent.TbldteColor;
-                            break;
-                        case DteType.MultipleTitleEncoding:
-                            Foreground = _parent.TblmteColor;
-                            break;
-                        case DteType.EndLine:
-                            Foreground = _parent.TblEndLineColor;
-                            break;
-                        case DteType.EndBlock:
-                            Foreground = _parent.TblEndBlockColor;
-                            break;
-                        default:
-                            Foreground = _parent.TblDefaultColor;
-                            break;
-                    }
-
-                #endregion
-            }
 
             UpdateAutoHighLiteSelectionByteVisual();
 
@@ -194,9 +137,6 @@ namespace WpfHexaEditor
             {
                 case CharacterTableType.Ascii:
                     Width = 12;
-                    break;
-                case CharacterTableType.TblFile:
-                    Width = TextFormatted?.Width > 12 ? TextFormatted.Width : 12;
                     break;
             }
             #endregion

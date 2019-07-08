@@ -40,9 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Bytes\ByteModified.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Bytes\ByteProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Caret.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\CharacterTable\DTE.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\CharacterTable\Enum.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\CharacterTable\TBLStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\ConstantReadOnly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Converters\BoolInverterConverter.cs" />

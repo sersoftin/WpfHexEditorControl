@@ -22,16 +22,5 @@ namespace WpfHexEditor.Winform.Sample
             if (fileDialog.ShowDialog() == DialogResult.OK && File.Exists(fileDialog.FileName))
                 hexEditor.FileName = fileDialog.FileName;
         }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            var fileDialog = new OpenFileDialog();
-
-            if (fileDialog.ShowDialog() == DialogResult.OK && File.Exists(fileDialog.FileName))
-            {
-                hexEditor.LoadTblFile(fileDialog.FileName);
-                hexEditor.TypeOfCharacterTable = CharacterTableType.TblFile;
-            }
-        }
     }
 }

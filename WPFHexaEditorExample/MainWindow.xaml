@@ -152,29 +152,6 @@
                                 IsEnabled="False" />
                         </StackPanel>
                     </MenuItem>
-                    <MenuItem Header="Character table">
-                        <MenuItem
-                            x:Name="CTableAsciiButton"
-                            Click="CTableASCIIButton_Click"
-                            Header="ASCII"
-                            IsCheckable="True" />
-                        <MenuItem
-                            x:Name="CTableTblButton"
-                            Click="CTableTBLButton_Click"
-                            Header="Load TBL file" />
-                        <MenuItem
-                            x:Name="CTableTblDefaultEbcdicButton"
-                            Click="CTableTblDefaultEBCDICButton_Click"
-                            Header="Load Build-in TBL : EBCDIC with special character" />
-                        <MenuItem
-                            x:Name="CTableTblDefaultEbcdicnoSpButton"
-                            Click="CTableTblDefaultEBCDICNoSPButton_Click"
-                            Header="Load Build-in TBL : EBCDIC no special character" />
-                        <MenuItem
-                            x:Name="CTableTblDefaultAsciiButton"
-                            Click="CTableTBLDefaultASCIIButton_Click"
-                            Header="Load Build-in TBL : ASCII" />
-                    </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="PositionMenu" Header="Position">
                     <StackPanel Margin="0" Orientation="Horizontal">

@@ -107,10 +107,6 @@
                     x:Name="CopyPascalCMenu"
                     Click="CopyToClipBoardCMenu_Click"
                     Header="Pascal" />
-                <MenuItem
-                    x:Name="CopyTblcMenu"
-                    Click="CopyToClipBoardCMenu_Click"
-                    Header="{x:Static p:Resources.CopyAsTBLString}" />
             </MenuItem>
             <Separator />
             <MenuItem
@@ -326,19 +322,6 @@
             MouseEnter="TopRectangle_MouseEnter"
             MouseLeave="TopRectangle_MouseLeave"
             Opacity="0" />
-        <!--#endregion-->
-
-        <Label
-            x:Name="TblLabel"
-            Grid.Row="2"
-            Grid.RowSpan="2"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            Margin="0,1,05,1"
-            HorizontalAlignment="Right"
-            Content="{x:Static p:Resources.TBLString}"
-            FontWeight="Bold"
-            Visibility="Collapsed" />
         <!--#endregion-->
 
     </Grid>

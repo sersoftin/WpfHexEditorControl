@@ -40,7 +40,6 @@ namespace WpfHexaEditor.Core
         Byte,
         HexaString,
         AsciiString,
-        TblString,
         CSharpCode,
         VbNetCode,
         JavaCode,
@@ -97,8 +96,7 @@ namespace WpfHexaEditor.Core
         Bookmark,
         SelectionStart,
         ByteModified,
-        ByteDeleted,
-        TblBookmark
+        ByteDeleted
     }
 
     /// <summary>
@@ -117,8 +115,7 @@ namespace WpfHexaEditor.Core
     /// </summary>
     public enum CharacterTableType
     {
-        Ascii,
-        TblFile
+        Ascii
     }
 
     /// <summary>
