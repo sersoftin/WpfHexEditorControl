@@ -115,7 +115,7 @@ namespace WpfHexaEditor
                 Foreground);
 #endif
 
-#if NET47
+#if NET48
             //Draw text
             var formatedText = new FormattedText(Text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
                 new Typeface(_parent.FontFamily, _parent.FontStyle, FontWeight, _parent.FontStretch), _parent.FontSize,

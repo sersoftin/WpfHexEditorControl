@@ -144,7 +144,7 @@ namespace WpfHexaEditor.Layers {
                 advanceWidths[3 * i + 2] = CellPadding.Right + CellMargin.Right;
             }
 
-#if NET47
+#if NET48
             var glyph = new GlyphRun(GlyphTypeface, 0, false, fontSize, (float)PixelPerDip, glyphIndexes, startPosition, advanceWidths, null, null, null, null, null, null);
 #endif
 

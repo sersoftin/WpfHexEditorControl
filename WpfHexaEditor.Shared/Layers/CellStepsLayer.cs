@@ -201,7 +201,7 @@ namespace WpfHexaEditor.Layers {
 #if NET451
             var glyphRun = new GlyphRun(GlyphTypeface, 0, false , fontSize, glyphIndexes, offsetPosition, advancedWidths, null, null, null, null, null, null);
 #endif
-#if NET47
+#if NET48
             var glyphRun = new GlyphRun(GlyphTypeface, 0, false, fontSize, (float)PixelPerDip, glyphIndexes, offsetPosition, advancedWidths, null, null, null, null, null, null);
 #endif
 

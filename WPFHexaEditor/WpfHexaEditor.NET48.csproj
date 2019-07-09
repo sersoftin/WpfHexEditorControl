@@ -27,8 +27,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\DebugNET47\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET47</DefineConstants>
+    <OutputPath>bin\DebugNET48\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET48</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
@@ -39,8 +39,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\ReleaseNET47\</OutputPath>
-    <DefineConstants>TRACE;NET47</DefineConstants>
+    <OutputPath>bin\ReleaseNET48\</OutputPath>
+    <DefineConstants>TRACE;NET48</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>

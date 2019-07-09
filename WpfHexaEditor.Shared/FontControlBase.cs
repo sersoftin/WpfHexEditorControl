@@ -128,7 +128,7 @@ namespace WpfHexaEditor
             
 
 
-#if NET47
+#if NET48
         protected double PixelPerDip =>
             (_pixelPerDip ?? (_pixelPerDip = VisualTreeHelper.GetDpi(this).PixelsPerDip)).Value;
 
@@ -185,7 +185,7 @@ namespace WpfHexaEditor
             );
 #endif
 
-#if NET47
+#if NET48
             var formattedText = new FormattedText
             (
                 text,
