@@ -72,12 +72,7 @@ namespace WpfHexaEditor
         {
             if (Byte != null)
             {
-                switch (TypeOfCharacterTable)
-                {
-                    case CharacterTableType.Ascii:
-                        Text = ByteConverters.ByteToChar(Byte.Value).ToString();
-                        break;
-                }
+                Text = ByteConverters.ByteToChar(Byte.Value).ToString();
             }
             else
                 Text = string.Empty;
@@ -117,6 +112,18 @@ namespace WpfHexaEditor
                         Foreground = _parent.Foreground;
                         break;
                 }
+            }
+            else
+            {
+                #region TBL COLORING
+                var cbb = _parent.GetCustomBackgroundBlock(BytePositionInFile);
+
+                Description = cbb != null ? cbb.Description : "";
+
+                Background = cbb != null ? cbb.Color : Brushes.Transparent;
+                FontWeight = _parent.FontWeight;
+                Foreground = _parent.Foreground;
+                #endregion
             }
 
             UpdateAutoHighLiteSelectionByteVisual();
