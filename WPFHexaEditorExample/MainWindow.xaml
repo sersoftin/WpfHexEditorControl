@@ -216,14 +216,11 @@
                             ApplicationName="Wpf Hexeditor control sample"
                             BorderThickness="1"
                             ByteGrouping="FourByte"
-                            ByteSpacerPositioning="HexBytePanel"
-                            ByteSpacerVisualStyle="Dash"
-                            ByteSpacerWidthTickness="Normal"
                             DataStringVisual="Hexadecimal"
                             DefaultCopyToClipboardMode="HexaString"
                             ForegroundSecondColor="Blue"
                             OffSetStringVisual="Hexadecimal" 
-                            UseCustomBackGroudBlock="True"/>
+                            UseCustomBackGroudBlock="True" AllowContextMenu="True" FontSize="12" ByteSpacerVisualStyle="Dash" ByteSpacerPositioning="HexBytePanel" HighLightSelectionStart="False" VisualByteAddressLength="8"/>
                 </TabItem>
                 <TabItem Header="TabItem" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
                     <Grid Background="#FFE5E5E5"/>
