@@ -324,7 +324,7 @@ namespace WpfHexaEditor
                 typeface, _parent.FontSize, Foreground);
 #endif
 
-            dc.DrawText(formattedText, new Point(2, 0));
+            dc.DrawText(formattedText, new Point(2, 2));
 
             //Update properties
             TextFormatted = formattedText;
