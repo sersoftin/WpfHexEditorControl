@@ -259,11 +259,7 @@ namespace WpfHexaEditor
             }
             else
             {
-                var cbb = _parent.GetCustomBackgroundBlock(BytePositionInFile);
-
-                Description = cbb != null ? cbb.Description : "";
-
-                Background = cbb != null ? cbb.Color : Brushes.Transparent;
+                Background = Brushes.Transparent;
                 Foreground = _parent.GetColumnNumber(BytePositionInFile) % 2 == 0 ? _parent.Foreground : _parent.ForegroundSecondColor;
 
                 FontWeight = _parent.FontWeight;
@@ -354,19 +350,11 @@ namespace WpfHexaEditor
 
         protected override void OnMouseLeave(MouseEventArgs e)
         {
-            var cbb = _parent.GetCustomBackgroundBlock(BytePositionInFile);
-            
             if (Byte != null && !IsSelected && !IsHighLight &&
                 Action != ByteAction.Modified &&
                 Action != ByteAction.Deleted &&
                 Action != ByteAction.Added)
                 Background = Brushes.Transparent;
-
-            if (cbb != null && !IsSelected && !IsHighLight &&
-                Action != ByteAction.Modified &&
-                Action != ByteAction.Deleted &&
-                Action != ByteAction.Added)
-                Background = cbb.Color;
 
             IsMouseOverMe = false;
 

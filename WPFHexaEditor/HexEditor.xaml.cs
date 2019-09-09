@@ -20,7 +20,6 @@ using WpfHexaEditor.Core.Bytes;
 using WpfHexaEditor.Core.CharacterTable;
 using WpfHexaEditor.Core.Interfaces;
 using WpfHexaEditor.Core.MethodExtention;
-using WpfHexaEditor.Core.Xcbb;
 using WpfHexaEditor.Dialog;
 using static WpfHexaEditor.Core.Bytes.ByteConverters;
 using Path = System.IO.Path;
@@ -3771,6 +3770,7 @@ namespace WpfHexaEditor
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
                 BaseGrid.Children.Add(_caret);
+                _caret.CaretWidth = 4;
                 _caret.CaretHeight = FontSize;
                 _caret.BlinkPeriod = 600;
                 _caret.Hide();
@@ -3964,42 +3964,6 @@ namespace WpfHexaEditor
                 ctrl.RefreshView();
             }
         }
-        #endregion
-
-        #region WORK IN PROGRESS // CustomBackgroundBlock implementation
-
-        /// <summary>
-        /// Use CustomBackgroundBlock in the control
-        /// ONLY DETECT EXE FILE FOR NOW... NOT POSSIBLE TO CREATE OWN CBB (WILL BE POSSIBLE SOON)
-        /// </summary>
-        public bool UseCustomBackGroudBlock
-        {
-            get => (bool)GetValue(UseCustomBackGroudBlockProperty);
-            set => SetValue(UseCustomBackGroudBlockProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for UseCustomBackGroudBlock.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty UseCustomBackGroudBlockProperty =
-            DependencyProperty.Register(nameof(UseCustomBackGroudBlock), typeof(bool), typeof(HexEditor),
-                new FrameworkPropertyMetadata(false, Control_UseCustomBackGroudBlockPropertyChanged));
-
-        private static void Control_UseCustomBackGroudBlockPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is HexEditor ctrl && e.NewValue != e.OldValue) ctrl.RefreshView();
-        }
-        
-        private List<CustomBackgroundBlock> _cbbList = new List<CustomBackgroundBlock>();
-
-        internal CustomBackgroundBlock GetCustomBackgroundBlock(long bytePositionInFile) =>
-            _cbbList?.FirstOrDefault(cbb => bytePositionInFile >= cbb.StartOffset &&
-                                            bytePositionInFile <= cbb.StopOffset);
-
-        #endregion
-
-        #region NOT IMPLEMENTED // TBL intellisense-like support
-
-        //TODO: to be implemented
-
         #endregion
     }
 }

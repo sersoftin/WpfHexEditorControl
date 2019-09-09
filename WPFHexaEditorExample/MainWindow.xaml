@@ -219,8 +219,7 @@
                             DataStringVisual="Hexadecimal"
                             DefaultCopyToClipboardMode="HexaString"
                             ForegroundSecondColor="Blue"
-                            OffSetStringVisual="Hexadecimal" 
-                            UseCustomBackGroudBlock="True" AllowContextMenu="True" FontSize="12" ByteSpacerVisualStyle="Dash" ByteSpacerPositioning="HexBytePanel" HighLightSelectionStart="False" VisualByteAddressLength="8"/>
+                            OffSetStringVisual="Hexadecimal" AllowContextMenu="True" FontSize="12" ByteSpacerVisualStyle="Dash" ByteSpacerPositioning="HexBytePanel" HighLightSelectionStart="False" VisualByteAddressLength="8"/>
                 </TabItem>
                 <TabItem Header="TabItem" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
                     <Grid Background="#FFE5E5E5"/>

@@ -187,9 +187,9 @@ namespace WpfHexaEditor
                 var size = Text[1].ToString()
                     .GetScreenSize(_parent.FontFamily, _parent.FontSize, _parent.FontStyle, FontWeight,
                         _parent.FontStretch);
-
-                _parent.SetCaretSize(Width / 2, size.Height);
-                _parent.SetCaretMode(CaretMode.Overwrite);
+                //TODO: fix calc caret size based on character size
+                _parent.SetCaretSize(8, 16);
+                _parent.SetCaretMode(CaretMode.Insert);
 
                 switch (_keyDownLabel)
                 {
