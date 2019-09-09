@@ -722,7 +722,7 @@ namespace WpfHexaEditor.Core.Bytes
         /// Copies the current selection in the hex box to the Clipboard.
         /// </summary>
         /// <param name="selectionStop"></param>
-        /// <param name="copyChange">Set tu true if you want onclude change in your copy. Set to false to copy directly from source</param>
+        /// <param name="copyChange">Set to true if you want include change in your copy. Set to false to copy directly from source</param>
         /// <param name="selectionStart"></param>
         public byte[] GetCopyData(long selectionStart, long selectionStop, bool copyChange)
         {
