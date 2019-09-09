@@ -2178,7 +2178,7 @@ namespace WpfHexaEditor
         }
 
         /// <summary>
-        /// Update the data and string stackpanels yo current view;
+        /// Update the data and string stackpanels you current view;
         /// </summary>
         private void UpdateViewers(bool controlResize)
         {
